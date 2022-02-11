@@ -12,8 +12,10 @@ namespace Mission7Final.Infrastructure
 
     public class PaginationTagHelper : TagHelper
     {
+        // create a url instance
         private IUrlHelperFactory uhf;
 
+        // constructor
         public PaginationTagHelper(IUrlHelperFactory temp)
         {
             uhf = temp;
@@ -26,6 +28,7 @@ namespace Mission7Final.Infrastructure
         // Different tahn the View Context
         public PageInfo PageList { get; set; }
         public string PageAction { get; set; }
+        // CSS enabling
         public bool PageClassesEnabled { get; set; } = false;
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
@@ -35,13 +38,19 @@ namespace Mission7Final.Infrastructure
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
 
+            // add element in the target element (div)
             TagBuilder final = new TagBuilder("div");
 
+            // append a tag with a url & action (Index)
             for (int i = 1; i <= PageList.TotalPages; i++)
             {
+                // declare a tagbuilder instance and assign a new instance with a tag
                 TagBuilder tb = new TagBuilder("a");
+                // add Attribute (href) with action & page number
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                // put the page number as string inside of the a tag
                 tb.InnerHtml.Append(i.ToString());
+                // CSS styling
                 if (PageClassesEnabled)
                 {
                     tb.AddCssClass(PageClass);
@@ -59,7 +68,7 @@ namespace Mission7Final.Infrastructure
                 }
 
             }
-
+            // append the final's innerhtml in the taghelperoutput
             tho.Content.AppendHtml(final.InnerHtml);
         }
     }

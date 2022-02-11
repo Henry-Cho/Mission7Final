@@ -10,7 +10,7 @@ namespace Mission7Final.Models
         {
             context = _context;
         }
-
+        // Create a IQuerayble instance (Books type) which has an instance of BookContext
         public IQueryable<Book> Books => context.Books;
     }
 }

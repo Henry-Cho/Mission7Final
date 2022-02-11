@@ -19,16 +19,24 @@ namespace Mission7Final.Controllers
             repo = context;
         }
 
+        // Get the data from the Book databse and display its data in the index.cshtml
+        // default page number is 1
         public IActionResult Index(int pageNum = 1)
         {
+            // display 10 items per page
+            // A page should have a list of 10 books
             int pageSize = 10;
+
+            // define x with assigning a BooksViewModel instance
+            // the instance has Books model and PageInfo model
             var x = new BooksViewModel
             {
+                // Have a Books model with 10 items without the 10 previous items.
                 Books = repo.Books
                 .OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
-
+                // Define total number of projects, projects per page, and current page.
                 PageInfo = new PageInfo
                 {
                     TotalNumProjects = repo.Books.Count(),
@@ -36,6 +44,7 @@ namespace Mission7Final.Controllers
                     CurrentPage = pageNum
                 }
             };
+            // return a view that contains BooksViewModel information
             return View(x);
         }
 
