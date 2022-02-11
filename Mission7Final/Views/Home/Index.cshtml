@@ -8,17 +8,23 @@
 
 @foreach (Book b in Model.Books)
 {
-    <h2>@b.Title</h2>
-    <ul>
-        <li>Author: @b.Author</li>
-        <li>Publisher: @b.Publisher</li>
-        <li>ISBN: @b.ISBN</li>
-        <li>Classification/Category: @b.Category</li>
-        <li>Number of Pages: @b.PageCount</li>
-        <li>Price: @b.Price</li>
-    </ul>
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h2>@b.Title</h2>
+            <ul>
+                <li>Author: @b.Author</li>
+                <li>Publisher: @b.Publisher</li>
+                <li>ISBN: @b.ISBN</li>
+                <li>Classification/Category: @b.Category</li>
+                <li>Number of Pages: @b.PageCount</li>
+                <li>Price: $@b.Price</li>
+            </ul>
+        </div>
+    </div>
 
     <br />
-}
+    }
 
-<div page-list="@Model.PageInfo" page-action="Index"></div>
+<div page-list="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
+        page-class="btn" page-class-normal="btn-outline-dark"
+        page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
