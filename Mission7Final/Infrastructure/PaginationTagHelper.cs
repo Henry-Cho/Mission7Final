@@ -25,7 +25,8 @@ namespace Mission7Final.Infrastructure
         [HtmlAttributeNotBound]
         public ViewContext vc { get; set; }
 
-        // Different tahn the View Context
+        // Different than the View Context
+        // This is for adding class to the target element
         public PageInfo PageList { get; set; }
         public string PageAction { get; set; }
         // CSS enabling
